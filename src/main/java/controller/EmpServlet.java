@@ -361,7 +361,6 @@ public class EmpServlet extends HttpServlet {
         List<DeptDO> deptDOs = deptService.getAll();
         req.setAttribute("deptDOs", deptDOs);
 
-        System.out.println("測試成功");
     }
 
 }
