@@ -367,9 +367,9 @@ public class DeptDAOImpl implements DeptDAO {
         return list;
     }
 
-    public static void main(String[] args) {
-
-        DeptDAO dao = new DeptDAOImpl();
+//    public static void main(String[] args) {
+//
+//        DeptDAO dao = new DeptDAOImpl();
 
         // 新增
 //		DeptDO deptDO1 = new DeptDO();
@@ -404,17 +404,17 @@ public class DeptDAOImpl implements DeptDAO {
 //        }
 
         // 查詢某部門的員工
-		List<EmpDO> list = dao.getEmpsByDeptno(10);
-		for (EmpDO empDO : list) {
-			System.out.print(empDO.getEmpno() + ",");
-			System.out.print(empDO.getEname() + ",");
-			System.out.print(empDO.getJob() + ",");
-			System.out.print(empDO.getHiredate() + ",");
-			System.out.print(empDO.getSal() + ",");
-			System.out.print(empDO.getComm() + ",");
-			System.out.print(empDO.getDeptno());
-			System.out.println();
-		}
-    }
+//		List<EmpDO> list = dao.getEmpsByDeptno(10);
+//		for (EmpDO empDO : list) {
+//			System.out.print(empDO.getEmpno() + ",");
+//			System.out.print(empDO.getEname() + ",");
+//			System.out.print(empDO.getJob() + ",");
+//			System.out.print(empDO.getHiredate() + ",");
+//			System.out.print(empDO.getSal() + ",");
+//			System.out.print(empDO.getComm() + ",");
+//			System.out.print(empDO.getDeptno());
+//			System.out.println();
+//		}
+//    }
 
 }

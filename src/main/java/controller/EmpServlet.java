@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
 import model.DeptDO;
 import model.EmpDO;
 import service.DeptService;
@@ -87,7 +89,7 @@ public class EmpServlet extends HttpServlet {
                 }
 
                 // 2.開始查詢資料
-                EmpService empService = new EmpServiceImpl();
+                EmpService empService = getEmpServiceFromSpring();
                 EmpDO empDO = empService.getOneEmp(empno);
                 if (empDO == null) {
                     errorMsgs.add("查無資料");
@@ -128,7 +130,7 @@ public class EmpServlet extends HttpServlet {
                 Integer empno = new Integer(req.getParameter("empno"));
 
                 // 2.開始查詢資料
-                EmpService empService = new EmpServiceImpl();
+                EmpService empService = getEmpServiceFromSpring();
                 EmpDO empDO = empService.getOneEmp(empno);
 
                 // 3.查詢完成，準備轉交(Send the Success view)
@@ -213,8 +215,8 @@ public class EmpServlet extends HttpServlet {
                 }
 
                 // 2.開始修改資料
-                EmpService empService = new EmpServiceImpl();
-                empDO = empService.updateEmp(empno, ename, job, hiredate, sal, comm, deptno);
+                EmpService empService = getEmpServiceFromSpring();
+                empDO = empService.updateEmp(empDO);
 
                 // 3.修改完成,準備轉交(Send the Success view)
                 req.setAttribute("empDO", empDO);
@@ -295,8 +297,8 @@ public class EmpServlet extends HttpServlet {
                 }
 
                 // 2.開始新增資料
-                EmpService empService = new EmpServiceImpl();
-                empService.addEmp(ename, job, hiredate, sal, comm, deptno);
+                EmpService empService = getEmpServiceFromSpring();
+                empService.addEmp(empDO);
 
                 // 3.新增完成，準備轉交(Send the Success view)
                 setDeptDOsAndEmpDOsRequestAttribute(req); // 查出所有部門及員工存入req，供/emp/listAll.jsp顯示使用
@@ -324,7 +326,7 @@ public class EmpServlet extends HttpServlet {
                 Integer empno = new Integer(req.getParameter("empno"));
 
                 // 2.開始刪除資料
-                EmpService empService = new EmpServiceImpl();
+                EmpService empService = getEmpServiceFromSpring();
                 empService.deleteEmp(empno);
 
                 // 3.刪除完成,準備轉交(Send the Success view)
@@ -362,5 +364,19 @@ public class EmpServlet extends HttpServlet {
         req.setAttribute("deptDOs", deptDOs);
 
     }
+
+ // 將 Service 物件生成交由 Spring 管理，不用再自己 new 物件
+    // 此種取得 Spring Bean 的方式為暫時測試用
+    private EmpService getEmpServiceFromSpring() {
+        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+        return context.getBean("empServiceImpl", EmpService.class);
+    }
+
+    // 將 Service 物件生成交由 Spring 管理，不用再自己 new 物件
+    // 此種取得 Spring Bean 的方式為暫時測試用
+//    private DeptService getDeptServiceFromSpring() {
+//        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+//        return context.getBean("deptServiceImpl", DeptService.class);
+//    }
 
 }

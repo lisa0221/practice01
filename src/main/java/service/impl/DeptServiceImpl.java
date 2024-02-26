@@ -2,17 +2,24 @@ package service.impl;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import dao.DeptDAO;
 import dao.impl.DeptDAOImpl;
+import lombok.NoArgsConstructor;
 import model.DeptDO;
 import model.EmpDO;
 import service.DeptService;
 
+@Service
+@NoArgsConstructor //自動生成無構造參數
 public class DeptServiceImpl implements DeptService {
 
     private DeptDAO dao;
 
-    public DeptServiceImpl() {
+    @Autowired
+    public DeptServiceImpl(DeptDAO dao) {
         dao = new DeptDAOImpl();
     }
 
@@ -27,13 +34,9 @@ public class DeptServiceImpl implements DeptService {
     }
 
     @Override
-    public DeptDO update(Integer deptno, String dname, String loc) {
-        DeptDO deptDO = new DeptDO();
-        deptDO.setDeptno(deptno);
-        deptDO.setDname(dname);
-        deptDO.setLoc(loc);
+    public DeptDO update(DeptDO deptDO) {
         dao.update(deptDO);
-        return dao.findByPrimaryKey(deptno);
+        return dao.findByPrimaryKey(deptDO.getDeptno());
     }
 
     @Override
