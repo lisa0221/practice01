@@ -8,7 +8,15 @@
             http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
 
     <!-- scan base-package 及其子 package，將標註相關 annotation 的類別註冊為 Spring Bean -->
-    <context:component-scan base-package="org.tutorial" />
-
+<!--     <context:component-scan base-package="org.tutorial" /> -->
+<!--     <context:component-scan base-package="dao,annotation,aspect,conteoller,service,model" /> -->
+    <context:component-scan base-package="dao"/>
+	<context:component-scan base-package="controller"/>
+	<context:component-scan base-package="annotation"/>
+	<context:component-scan base-package="aspect"/>
+	<context:component-scan base-package="service"/>
+	<context:component-scan base-package="model"/>
+    
+    
     <bean class="org.springframework.aop.aspectj.annotation.AnnotationAwareAspectJAutoProxyCreator" />
 </beans>

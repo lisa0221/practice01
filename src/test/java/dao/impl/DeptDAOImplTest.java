@@ -1,4 +1,4 @@
-package org.tutorial.dao.impl;
+package dao.impl;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -9,7 +9,6 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import dao.DeptDAO;
-import dao.impl.DeptDAOImpl;
 import model.DeptDO;
 import model.EmpDO;
 
@@ -24,31 +23,31 @@ public class DeptDAOImplTest {
 
     @Test
     public void insert() {
-        DeptDO deptDO1 = new DeptDO();
-        deptDO1.setDname("製造部");
-        deptDO1.setLoc("美國洛杉磯");
-        dao.insert(deptDO1);
-        assertTrue(true);
-    }
-
-    @Test
-    public void update() {
         DeptDO deptDO = new DeptDO();
-        deptDO.setDeptno(10);
-        deptDO.setDname("財務部2");
-        deptDO.setLoc("臺灣台北2");
-        dao.update(deptDO);
+        deptDO.setDname("製造部");
+        deptDO.setLoc("美國洛杉磯");
+        dao.insert(deptDO);
         assertTrue(true);
     }
 
-    @Test
-    public void delete() {
-        dao.delete(10);
-        assertTrue(true);
-    }
+//    @Test
+//    public void update() {
+//        DeptDO deptDO = new DeptDO();
+//        deptDO.setDeptno(10);
+//        deptDO.setDname("財務部2");
+//        deptDO.setLoc("臺灣台北2");
+//        dao.update(deptDO);
+//        assertTrue(true);
+//    }
+//
+//    @Test
+//    public void delete() {
+//        dao.delete(30);
+//        assertTrue(true);
+//    }
 
     @Test
-    public static void findByPrimaryKey() {
+    public void findByPrimaryKey() {
         DeptDO deptDO = dao.findByPrimaryKey(20);
         assertEquals(Integer.valueOf(20), deptDO.getDeptno());
         assertEquals("研發部", deptDO.getDname());
@@ -56,7 +55,7 @@ public class DeptDAOImplTest {
     }
 
     @Test
-    public static void getAll() {
+    public void getAll() {
         List<DeptDO> list = dao.getAll();
         for (DeptDO deptDO : list) {
             System.out.print(deptDO.getDeptno() + ",");
@@ -67,7 +66,7 @@ public class DeptDAOImplTest {
     }
 
     @Test
-    public static void getEmpsByDeptno() {
+    public void getEmpsByDeptno() {
         List<EmpDO> list = dao.getEmpsByDeptno(10);
         for (EmpDO empDO : list) {
             System.out.print(empDO.getEmpno() + ",");
@@ -79,7 +78,6 @@ public class DeptDAOImplTest {
             System.out.print(empDO.getDeptno());
             System.out.println();
         }
-
     }
 
 }

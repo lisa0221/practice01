@@ -22,7 +22,7 @@ public class IndexServlet extends HttpServlet {
 
     @Override
     public void doGet(HttpServletRequest req, HttpServletResponse res)
-            throws ServletException, IOException {
+        throws ServletException, IOException {
         DeptService deptService = getDeptServiceFromSpring();
         List<DeptDO> deptDOs = deptService.getAll();
         req.setAttribute("deptDOs", deptDOs);
@@ -35,8 +35,7 @@ public class IndexServlet extends HttpServlet {
         successView.forward(req, res);
     }
 
-
- // 將 Service 物件生成交由 Spring 管理，不用再自己 new 物件
+    // 將 Service 物件生成交由 Spring 管理，不用再自己 new 物件
     // 此種取得 Spring Bean 的方式為暫時測試用
     private DeptService getDeptServiceFromSpring() {
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
@@ -49,4 +48,5 @@ public class IndexServlet extends HttpServlet {
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
         return context.getBean("empServiceImpl", EmpService.class);
     }
+
 }

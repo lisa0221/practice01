@@ -1,4 +1,4 @@
-package org.tutorial.dao.impl;
+package dao.impl;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -7,11 +7,12 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 public class UnitTestPractice {
+
     public static String TEST_STRING = "";
 
     @BeforeClass
     public static void beforeClass() {
-        TEST_STRING = "BEFORE STRING";
+//        TEST_STRING = "BEFORE STRING";
         System.out.println("~~~~~before class~~~~~");
     }
 
@@ -39,4 +40,5 @@ public class UnitTestPractice {
     public static void afterClass() {
         System.out.println("~~~~~after class~~~~~");
     }
+
 }

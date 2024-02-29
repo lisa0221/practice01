@@ -8,10 +8,13 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
 import dao.DeptDAO;
 import model.DeptDO;
 import model.EmpDO;
 
+@Repository
 public class DeptDAOImpl implements DeptDAO {
     String driver = "com.mysql.cj.jdbc.Driver";
     String url = "jdbc:mysql://localhost:3306/practice";
@@ -367,9 +370,11 @@ public class DeptDAOImpl implements DeptDAO {
         return list;
     }
 
-//    public static void main(String[] args) {
-//
-//        DeptDAO dao = new DeptDAOImpl();
+
+
+    public static void main(String[] args) {
+
+        DeptDAO dao = new DeptDAOImpl();
 
         // 新增
 //		DeptDO deptDO1 = new DeptDO();
@@ -395,13 +400,13 @@ public class DeptDAOImpl implements DeptDAO {
 //		System.out.println("---------------------");
 
         // 查詢部門
-//        List<DeptDO> list = dao.getAll();
-//        for (DeptDO deptDO : list) {
-//            System.out.print(deptDO.getDeptno() + ",");
-//            System.out.print(deptDO.getDname() + ",");
-//            System.out.print(deptDO.getLoc());
-//            System.out.println();
-//        }
+        List<DeptDO> list = dao.getAll();
+        for (DeptDO deptDO : list) {
+            System.out.print(deptDO.getDeptno() + ",");
+            System.out.print(deptDO.getDname() + ",");
+            System.out.print(deptDO.getLoc());
+            System.out.println();
+        }
 
         // 查詢某部門的員工
 //		List<EmpDO> list = dao.getEmpsByDeptno(10);
@@ -415,6 +420,6 @@ public class DeptDAOImpl implements DeptDAO {
 //			System.out.print(empDO.getDeptno());
 //			System.out.println();
 //		}
-//    }
+    }
 
 }

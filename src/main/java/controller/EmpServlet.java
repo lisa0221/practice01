@@ -18,8 +18,6 @@ import model.DeptDO;
 import model.EmpDO;
 import service.DeptService;
 import service.EmpService;
-import service.impl.DeptServiceImpl;
-import service.impl.EmpServiceImpl;
 
 @WebServlet("/emp/emp.do")
 public class EmpServlet extends HttpServlet {
@@ -348,24 +346,23 @@ public class EmpServlet extends HttpServlet {
     // 查出所有部門及員工存入req，供 /index.jsp 或 /emp/listAll.jsp 畫面顯示使用
     // 但不推薦這種寫法，因為有 side effect 問題
     private void setDeptDOsAndEmpDOsRequestAttribute(HttpServletRequest req) {
-        DeptService deptService = new DeptServiceImpl();
+        DeptService deptService = getDeptServiceFromSpring();
         List<DeptDO> deptDOs = deptService.getAll();
         req.setAttribute("deptDOs", deptDOs);
 
-        EmpService empService = new EmpServiceImpl();
+        EmpService empService = getEmpServiceFromSpring();
         List<EmpDO> empDOs = empService.getAll();
         req.setAttribute("empDOs", empDOs);
     }
 
     // 查出所有部門存入req，供 /emp/add.jsp 或 /emp/update.jsp 或 /emp/listOne.jsp 畫面顯示使用
     private void setDeptDOsRequestAttribute(HttpServletRequest req) {
-        DeptService deptService = new DeptServiceImpl();
+        DeptService deptService = getDeptServiceFromSpring();
         List<DeptDO> deptDOs = deptService.getAll();
         req.setAttribute("deptDOs", deptDOs);
-
     }
 
- // 將 Service 物件生成交由 Spring 管理，不用再自己 new 物件
+    // 將 Service 物件生成交由 Spring 管理，不用再自己 new 物件
     // 此種取得 Spring Bean 的方式為暫時測試用
     private EmpService getEmpServiceFromSpring() {
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
@@ -374,9 +371,9 @@ public class EmpServlet extends HttpServlet {
 
     // 將 Service 物件生成交由 Spring 管理，不用再自己 new 物件
     // 此種取得 Spring Bean 的方式為暫時測試用
-//    private DeptService getDeptServiceFromSpring() {
-//        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
-//        return context.getBean("deptServiceImpl", DeptService.class);
-//    }
+    private DeptService getDeptServiceFromSpring() {
+        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+        return context.getBean("deptServiceImpl", DeptService.class);
+    }
 
 }

@@ -9,9 +9,12 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
 import dao.EmpDAO;
 import model.EmpDO;
 
+@Repository
 public class EmpDAOImpl implements EmpDAO {
     String driver = "com.mysql.cj.jdbc.Driver";
     String url = "jdbc:mysql://localhost:3306/practice";
@@ -296,6 +299,7 @@ public class EmpDAOImpl implements EmpDAO {
         return list;
     }
 
+
     public static void main(String[] args) {
 
         EmpDAO dao = new EmpDAOImpl();
@@ -325,28 +329,28 @@ public class EmpDAOImpl implements EmpDAO {
 //        dao.delete(7014);
 //
 //        // 查詢
-        EmpDO empDO3 = dao.findByPrimaryKey(1);
-        System.out.print(empDO3.getEmpno() + ",");
-        System.out.print(empDO3.getEname() + ",");
-        System.out.print(empDO3.getJob() + ",");
-        System.out.print(empDO3.getHiredate() + ",");
-        System.out.print(empDO3.getSal() + ",");
-        System.out.print(empDO3.getComm() + ",");
-        System.out.println(empDO3.getDeptno());
-        System.out.println("---------------------");
+//        EmpDO empDO3 = dao.findByPrimaryKey(1);
+//        System.out.print(empDO3.getEmpno() + ",");
+//        System.out.print(empDO3.getEname() + ",");
+//        System.out.print(empDO3.getJob() + ",");
+//        System.out.print(empDO3.getHiredate() + ",");
+//        System.out.print(empDO3.getSal() + ",");
+//        System.out.print(empDO3.getComm() + ",");
+//        System.out.println(empDO3.getDeptno());
+//        System.out.println("---------------------");
 
         // 查詢
-//        List<EmpDO> list = dao.getAll();
-//        for (EmpDO empDO : list) {
-//            System.out.print(empDO.getEmpno() + ",");
-//            System.out.print(empDO.getEname() + ",");
-//            System.out.print(empDO.getJob() + ",");
-//            System.out.print(empDO.getHiredate() + ",");
-//            System.out.print(empDO.getSal() + ",");
-//            System.out.print(empDO.getComm() + ",");
-//            System.out.print(empDO.getDeptno());
-//            System.out.println();
-//        }
+        List<EmpDO> list = dao.getAll();
+        for (EmpDO empDO : list) {
+            System.out.print(empDO.getEmpno() + ",");
+            System.out.print(empDO.getEname() + ",");
+            System.out.print(empDO.getJob() + ",");
+            System.out.print(empDO.getHiredate() + ",");
+            System.out.print(empDO.getSal() + ",");
+            System.out.print(empDO.getComm() + ",");
+            System.out.print(empDO.getDeptno());
+            System.out.println();
+        }
     }
 
 }

@@ -6,21 +6,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import dao.DeptDAO;
-import dao.impl.DeptDAOImpl;
 import lombok.NoArgsConstructor;
 import model.DeptDO;
 import model.EmpDO;
 import service.DeptService;
 
 @Service
-@NoArgsConstructor //自動生成無構造參數
+@NoArgsConstructor
 public class DeptServiceImpl implements DeptService {
 
     private DeptDAO dao;
 
+    // Constructor Injection
     @Autowired
     public DeptServiceImpl(DeptDAO dao) {
-        dao = new DeptDAOImpl();
+        this.dao = dao;
     }
 
     @Override
